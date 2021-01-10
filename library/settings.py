@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
     'versatileimagefield',
     'api.apps.ApiConfig',
@@ -50,6 +51,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'library.urls'
@@ -134,3 +137,7 @@ VERSATILEIMAGEFIELD_RENDITION_KEY_SETS = {
         ('small_square_crop', 'crop__50x50')
     ]
 }
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8080",
+    "http://127.0.0.1:8080"
+]
