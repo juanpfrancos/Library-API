@@ -55,7 +55,13 @@ class Book(models.Model):
     genre = models.ManyToManyField(Genre, help_text="Seleccione un genero para este libro")
     # ManyToManyField, porque un género puede contener muchos libros y un libro puede cubrir varios géneros.
     # La clase Genre ya ha sido definida, entonces podemos especificar el objeto arriba.
-    image = models.ManyToManyField('Image', related_name='img')
+    image = VersatileImageField(
+        'Image',
+        upload_to='images/',
+        ppoi_field='image_ppoi'
+    )
+    image_ppoi = PPOIField()
+
 
     def __str__(self):
         """
@@ -98,15 +104,3 @@ class BookInstance(models.Model):
         String para representar el Objeto del Modelo
         """
         return '%s (%s)' % (self.id,self.book.title)
-
-class Image(models.Model):
-    name = models.CharField(max_length=255)
-    image = VersatileImageField(
-        'Image',
-        upload_to='images/',
-        ppoi_field='image_ppoi'
-    )
-    image_ppoi = PPOIField()
-
-    def __str__(self):
-        return self.name

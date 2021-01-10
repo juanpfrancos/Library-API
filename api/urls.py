@@ -6,7 +6,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
-router.register(r'image', views.ImageViewSet, basename='Image')
 router.register(r'book', views.BookViewSet, basename='Book')
 
 urlpatterns = [
