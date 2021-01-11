@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
 router.register(r'book', views.BookViewSet, basename='Book')
+router.register(r'author', views.AuthorViewSet, basename='Author')
 
 urlpatterns = [
     url('', include(router.urls)),

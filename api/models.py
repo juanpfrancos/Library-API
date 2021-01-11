@@ -45,14 +45,14 @@ class Book(models.Model):
     """
     title = models.CharField(max_length=200)
 
-    author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey('Author', related_name='author', on_delete=models.SET_NULL, null=True)
     # ForeignKey, ya que un libro tiene un solo autor, pero el mismo autor puede haber escrito muchos libros.
     # 'Author' es un string, en vez de un objeto, porque la clase Author aún no ha sido declarada.
     summary = models.TextField(max_length=1000, help_text="Ingrese una breve descripción del libro")
 
     isbn = models.CharField('ISBN',max_length=13, help_text='13 Caracteres <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
 
-    genre = models.ManyToManyField(Genre, help_text="Seleccione un genero para este libro")
+    genre = models.ManyToManyField(Genre, related_name='genre', help_text="Seleccione un genero para este libro")
     # ManyToManyField, porque un género puede contener muchos libros y un libro puede cubrir varios géneros.
     # La clase Genre ya ha sido definida, entonces podemos especificar el objeto arriba.
     image = VersatileImageField(
